@@ -184,11 +184,38 @@ spin build
 # Run the app and load the DB data
 spin up --runtime-config-file ./local.toml --sqlite @migrations.sql
 
-# Test it
+# Test it with REST Client
+# Get items
+
+GET http://127.0.0.1:3000/items
+
+###
+
+# Get only 1 items
+GET http://127.0.0.1:3000/items/d660b9b2-0406-46d6-9efe-b40b4cca59fc
+
+###
+
+PUT http://127.0.0.1:3000/items/d660b9b2-0406-46d6-9efe-b40b4cca59fc HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Bananas"
+}
 ```
 
 ### Cloud
 
+```shell
+# Login into Fermyon Cloud
+spin cloud login
+
+# Deploy the app
+spin deploy
+## Answer yes to create DB and KV
+
+# Test it via the browser with the [app URL]/items
+```
 
 ### Kube - CHALLENGE
 
