@@ -59,6 +59,15 @@ The following configurations were done on Rancher Desktop:
 - Enable `WebAssembly` in `Preferences > Container Engine`
 - Enable `Install Spin Operator` in `Preferences > Kubernetes`
 
+### spin kube plugin
+
+The `kube` plugin for `spin` CLI was installed as follow:
+
+```shell
+spin plugins update
+spin plugins install kube
+```
+
 ### Rust WASI target
 
 For the RUST examples, the following libraries were added:
@@ -158,6 +167,9 @@ spin build
 # Push the Spin App to an OCI registry
 export IMAGE_NAME=ttl.sh/spin-app-$(uuidgen):1h
 spin registry push $IMAGE_NAME
+
+# Deploy the Spin App to Kubernetes
+spin kube scaffold -f $IMAGE_NAME | kubectl apply -f -
 ```
 
 ### Clean-up
